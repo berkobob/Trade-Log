@@ -9,7 +9,7 @@ import java.util.TreeMap;
  * ALL THE POSITIONS FOR A SPECIFIC STOCK!
  */
 
-public class Stock {
+public class Stock {   
 
 	Map<String, Position> positions;
 	String stock;
