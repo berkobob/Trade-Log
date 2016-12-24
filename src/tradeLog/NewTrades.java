@@ -3,20 +3,10 @@ package tradeLog;
 import java.io.BufferedReader;  
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
 
-public class Trades implements Iterable<Trade>{
+public class NewTrades extends Trades{
 	
-	ArrayList<Trade> trades;
-	
-	public Trades() {
-		trades = new ArrayList<Trade>();
-	}
-
-	public Trades(String fileName) {
-		
-		trades = new ArrayList<Trade>();
+	public NewTrades(String fileName) {
 
 		String line = null;
 		
@@ -36,10 +26,4 @@ public class Trades implements Iterable<Trade>{
 			System.err.println("Unable to read the file");
 		}	
 	}
-
-	@Override
-	public Iterator<Trade> iterator() {
-		return trades.iterator();
-	}
-	
 }

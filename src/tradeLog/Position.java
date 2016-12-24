@@ -1,40 +1,37 @@
 package tradeLog;
 
-import java.util.ArrayList;
-
+import tradeLogEnums.State;
 import tradeLogEnums.Strategy;
 
 /*
  * ALL THE TRADES FOR A SPECIFIC OPTION OR STOCK (TICKER)
  */
 
-public class Position {
+public class Position extends Trades{
 	
-	Strategy strategy;
-	String symbol;
-	int quantity;
-	int count;
-	
-	ArrayList<Trade> trades;
+	private Strategy strategy;
+	private String symbol;
+	private int quantity;
+	private State state;
 
 	public Position(Trade trade) {
-		trades = new ArrayList<Trade>();
+		super();
 		trades.add(trade);
 		symbol = trade.getSymbol();
 		quantity = trade.getQuantity();
-		count = 1;
+		state = State.OPEN;
 	}
 
 	public boolean add(Trade trade) {
-		// Should we search for a duplicate?
+		// Search for a duplicate
 		for (Trade t: trades) {
 			if (trade.equals(t))
 				return false;
 		}
 		trades.add(trade);
 		quantity += trade.getQuantity();
-		count += 1;
-		// Do something special if the quantity is zero !!
+		if (quantity == 0)
+			state = State.CLOSE;
 		return true;
 	}
 	
@@ -53,10 +50,6 @@ public class Position {
 	}
 	
 	public int getCount() {
-		return count;
-	}
-	
-	public ArrayList<Trade> getTrades() {
-		return trades;
+		return trades.size();
 	}
 }

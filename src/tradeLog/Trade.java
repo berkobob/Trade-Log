@@ -96,7 +96,25 @@ public class Trade {
 		 */
 		
 		public String toString() {
-			return trade.toString();
+			String string = "";
+			
+			if ((int)trade.get(TradeSpec.QUANTITY) >= 0)
+				string += "Buy";
+			else 
+				string += "Sell";
+			
+			string += " to " + trade.get(TradeSpec.STATE) + " " + 
+			Math.abs((int)trade.get(TradeSpec.QUANTITY)) + " " + 
+					trade.get(TradeSpec.STOCK) + " ";
+			
+			if (trade.get(TradeSpec.ASSET) != Asset.STOCK) {
+				SimpleDateFormat expiryDateFormat = new SimpleDateFormat("MMM yy");
+				string += expiryDateFormat.format(trade.get(TradeSpec.EXPIRY)); 
+				string += " " + trade.get(TradeSpec.STRIKE) + " " + trade.get(TradeSpec.ASSET);
+			}
+			else
+				string += " shares";
+			return string;
 		}
 		
 		public boolean equals(Trade t) {
@@ -124,7 +142,7 @@ public class Trade {
 		public boolean contains(TradeSpec spec) {
 			return trade.containsKey(spec);
 		}
-			
+
 		
 		/*
 		 * GETTERS AND SETTERS

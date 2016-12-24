@@ -1,6 +1,7 @@
 package tradeLog;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -61,7 +62,7 @@ public class Stock {
 			return false;
 	}
 
-	public ArrayList<Trade> getTrades(String symbol) {
+	public List<Trade> getTrades(String symbol) {
 		return positions.get(symbol).getTrades();
 	}
 
